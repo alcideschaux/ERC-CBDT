@@ -1,19 +1,31 @@
 import pandas as pd
-import unidecode
 
-# Cargar los archivos
-cuestionario_cbdt = pd.read_excel("Cuestionario CBDT.xlsx")
-sociodemograficos = pd.read_excel("Sociodemográficos.xlsx")
+# Load the data
+cuestionario_cbdt = pd.read_excel("/path/to/Cuestionario CBDT.xlsx")
+sociodemograficos = pd.read_excel("/path/to/Sociodemográficos.xlsx")
 
-# Combinar ambos DataFrames
-merged_data = pd.merge(cuestionario_cbdt, sociodemograficos, left_on='ID', right_on='Num.', how='outer')
+# Merge the dataframes
+combined_df = pd.merge(cuestionario_cbdt, sociodemograficos, left_on="ID", right_on="Num.", how="outer")
 
-# Limpiar y homogeneizar columnas
-merged_data.columns = merged_data.columns.str.lower().str.strip().str.replace('á', 'a').str.replace('ó', 'o').str.replace(' ', '_')
-merged_data.drop(['num.', '_merge'], axis=1, inplace=True)
-merged_data['estado_civil_padres'] = merged_data['estado_civil_padres'].replace(['Separados, madre fallecida'], ['Separados']).str.capitalize()
-merged_data = merged_data.replace("No tiene datos madre fallecida", float("nan"))
-merged_data['edad'] = merged_data['edad'].astype(float)
+# Standardize the responses for the questionnaire columns
+combined_df.replace({"SI": "SÍ"}, inplace=True)
 
-# Guardar el conjunto de datos limpio
-merged_data.to_csv("data_cleaned.csv", index=False)
+# Merging "Separados, madre fallecida" with "Separados"
+combined_df['Estado Civil de los padres'].replace({"Separados, madre fallecida": "Separados"}, inplace=True)
+
+# Treating "No tiene datos madre fallecida" as a missing value
+combined_df['ocupacion mamá'].replace({"No tiene datos madre fallecida": None}, inplace=True)
+
+# Removing extra spaces and standardizing the capitalization for specific columns
+columns_to_clean = ['Sexo', 'Estado Civil de los padres', 'Escolaridad Mamá', 
+                    'Escolaridad Papá', 'Escolaridad Paciente', 'ocupacion mamá']
+for col in columns_to_clean:
+    combined_df[col] = combined_df[col].str.strip().str.capitalize()
+
+# Reordering the columns: First the sociodemographic factors and then the questionnaire responses
+sociodemographic_columns = sociodemograficos.columns.tolist()
+questionnaire_columns = cuestionario_cbdt.columns.tolist()
+ordered_combined_df = combined_df[sociodemographic_columns + questionnaire_columns]
+
+# Save the cleaned and ordered data to a CSV
+ordered_combined_df.to_csv("/path/to/save/ordered_corrected_data.csv", index=False)

@@ -1,4 +1,4 @@
-id,edad,sexo,localidad,estado_civil_padres,q5,escoridad_mama,escoridad_papa,escoridad_paciente,ocupacion_papa,ocupacion_mama,edad_diagnostico_erc,patologia_base,grupo_estudio,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22,q23,q24,q25,q26,q27,q28,q29,q30,q31,q32
+id,edad,sexo,localidad,estado_civil_padres,q5,escolaridad_mama,escolaridad_papa,escolaridad_paciente,ocupacion_papa,ocupacion_mama,edad_diagnostico_erc,patologia_base,grupo_estudio,q6,q7,q8,q9,q10,q11,q12,q13,q14,q15,q16,q17,q18,q19,q20,q21,q22,q23,q24,q25,q26,q27,q28,q29,q30,q31,q32
 20,16.0,Masculino,Ñemby,Unidos,1,Secundaria,Secundaria,Secundaria,Empleado,Empleada domestica,6.0,Glomeruloesclerosis focal y segmentaria,B,No,No,No,Sí,No,No,No,No,No,Sí,No,No,No,No,No,No,No,Sí,No,Sí,No,No,No,No,No,Sí,No
 68,13.0,Femenino,San Pedro,Casados,1,Secundaria,Secundaria,Secundaria,Carpintero,Empleada domestica,1.0,Cakut,C,No,No,No,No,No,Sí,Sí,No,No,Sí,No,No,No,Si,Si,No,No,No,No,Sí,No,No,Sí,No,No,No,No
 71,13.0,Masculino,Capiata,Separados,2,Secundaria,Terciaria,Secundaria,Policia,Ama de casa,7.0,Cakut,C,No,No,No,No,No,No,Sí,Sí,No,Sí,No,No,No,No,No,No,No,No,No,No,No,No,No,No,No,Sí,No
