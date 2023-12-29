@@ -1,9 +1,11 @@
-# Fecha de última modificación: 2023-12-19
+# Fecha de última modificación: 2023-12-28
 
 # Considerar que, por defecto, el marco de datos se denomina df
 
 # Importar las librerías requeridas
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Crear una tabla de frecuencias absolutas y relativas
 def create_count_table(df, column_name):
@@ -21,3 +23,11 @@ def create_cross_table(df, column_name, groupby):
         total = count_table[column].sum()
         count_table[column] = count_table[column].astype(str) + " (" + ((count_table[column] / total) * 100).round(0).astype(int).astype(str) + "%)"
     return count_table
+
+# Crear un gráfico de barras
+def plot_count(df, column):
+    sns.countplot(data=df, x=column)
+    plt.xlabel('')
+    plt.ylabel('Núm. casos')
+    plt.show()
+plt.show()
